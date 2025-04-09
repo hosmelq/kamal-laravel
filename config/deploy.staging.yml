@@ -1,0 +1,24 @@
+accessories:
+  mysql:
+    host: 3.148.102.167
+  redis:
+    host: 3.148.102.167
+
+env:
+  clear:
+    APP_ENV: staging
+
+proxy:
+  host: kamal-staging.getnerdify.com
+
+servers:
+  horizon:
+    hosts:
+      - 3.148.102.167
+  schedule:
+    hosts:
+      - 3.148.102.167
+  web:
+    - 3.148.102.167
+
+

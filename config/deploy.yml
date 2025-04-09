@@ -1,0 +1,53 @@
+service: kamal-laravel
+
+image: hosmelq/kamal-laravel
+
+accessories:
+  mysql:
+    env:
+      clear:
+        MYSQL_DATABASE: kamal-laravel
+      secret:
+        - MYSQL_ROOT_PASSWORD
+    directories:
+      - data:/var/lib/mysql
+    image: mysql:8.0
+    port: 3306
+  redis:
+    directories:
+      - data:/data
+    image: valkey/valkey:8
+    port: 6379
+
+builder:
+  arch: arm64
+  dockerfile: docker/Dockerfile
+
+env:
+  clear:
+  secret:
+    - LARAVEL_ENV_ENCRYPTION_KEY
+
+proxy:
+  app_port: 8080
+  ssl: true
+
+registry:
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+  server: ghcr.io
+  username: hosmelq
+
+servers:
+  horizon:
+    cmd: php artisan horizon
+    options:
+      health-cmd: healthcheck-horizon
+  schedule:
+    cmd: php artisan schedule:work
+    options:
+      health-cmd: healthcheck-schedule
+  web:
+
+ssh:
+  user: ubuntu

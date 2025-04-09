@@ -1,0 +1,24 @@
+accessories:
+  mysql:
+    host: 18.116.36.136
+  redis:
+    host: 18.116.36.136
+
+env:
+  clear:
+    APP_ENV: production
+
+proxy:
+  host: kamal-production.getnerdify.com
+
+servers:
+  horizon:
+    hosts:
+      - 18.116.36.136
+  schedule:
+    hosts:
+      - 18.116.36.136
+  web:
+    - 18.116.36.136
+
+
